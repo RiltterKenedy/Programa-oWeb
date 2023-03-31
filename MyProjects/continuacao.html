@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+</head>
+
+<style>
+    
+    .titulo{
+        font-size: medium;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+    .titulo1{
+        font-size: medium;
+        font-family: "Arial black"
+    }
+    .campos{
+        font-size: medium;
+        font-family: 'Times New Roman', Times, serif;
+    }
+    .tituloGeral{
+        font-size: medium;
+        font-family: "Arial black" ;
+    }
+</style>
+
+<body>
+    <div id="div1">
+        <h1 id="titulo" class="titulo1"> Cadastro de Cliente </h1>
+    </div>
+    <form action="salvaDados.php">
+        <table align="center" border="9">
+            <tr align="center">
+                <td colspan="100%" class=".titulo1" >
+                    Dados cadastrais <br/>&nbsp;<br/>&nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="Nome" class="tituloGeral" > Nome: </label>
+                </td>
+                <td>
+                    <input type="text" id="Nome" name="Nome" size="45">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="Telefone" class="tituloGeral"> Celular:</label>
+                </td>
+                <td>
+                    <input type="phone" id="Telefone" name="Telefone" class="form-control" size="45" >
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                  <label for="Cpf" class="tituloGeral"> CPF: </label>  
+                </td>
+                <td>
+                    <input type="text" id="Cpf" name="Cpf" class="form-control" size="45">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="Cep" class="tituloGeral" > CEP: </label>
+                </td>
+                <td size="50">
+                    <input type="text" id="Cep" name="Cep" class="form-control" size="45" >
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="Email" class="tituloGeral"> Email:</label>
+                </td>
+                <td>
+                    <input type="text" id="Email" name="Email" onblur="validacaoEmail(this)" maxlength="60" size="45">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="Senha" class="tituloGeral"> Senha: </label>
+                </td>
+                <td>
+                    <input type="password" id="Senha" name="Senha" size="45">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="tituloGeral">
+                    Profissão:
+                </td>
+                <td class="Campos">
+                    <select id="DE_ESPECIALIDADE_SELECIONADA">
+                        <option value="Analista de Sistema">Analista de Sistema</option>
+                        <option value="Medico">Médico</option>
+                        <option value="Advogado">Advogado</option>
+                    </select>
+                    <input type="text" onchange="update ()" id="value" name="Profissao">Seta
+                    <div id="msprofissao"></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="tituloGeral" colspan="100%">
+                    <input type=submit>
+
+                    <input type="button" onclick="fnValidarCampos()" value="Enviar com validação">
+                </td>
+            </tr>
+
+        </table>
+        <div id="msgemail"></div>
+
+    </form>
+
+    <script>
+    function fnValidarCampos(){
+        alert('Meu primeiro java script');
+        if(document.getElementById("cpfid").value==0){
+            alert('Campo de cpf obrigatório.');
+            return false;
+        }
+        if(document.getElementById("cepid").value==0){
+            alert('Campo de cep obrigatório.');
+            return false;
+        }
+        if(document.getElementById("nomeid").value==0){
+            alert('Campo de nome obrigatório.');
+            return false;
+        }
+        if(document.getElementById("numeroid").value==0){
+            alert('Campo de celular obrigatório.');
+            return false;
+        }
+        
+    }
+    </script>
+    <script language="JavaScript">
+     function fnBuscaSelectEspecifico(busca, select) {
+        var valorABuscar = busca.value;
+        var buscaid = busca.id;
+        var valorABuscarSemFormatacao =
+        valorABuscar.replace(/(\.|\(|\)|\/|\-|)+/g,'');
+        var valorABuscarSemFormatado = valorABuscarSemFormatacao.replace('#','');
+        var valorABuscarFormatado = "";
+
+     }   
+    </script>
+    <script language="Javascript">
+        function validacaoEmail(field) {
+            usuario = field.value.substring(0, field.value.indexOf("@"));
+            dominio = field.value.substring(field.value.indexOf("@")+ 1, field.value.length);
+            field.value.length;
+            alert(usuario);
+            alert(domino);
+
+            if((usuario.length >=1) &&
+                (dominio.length >=3) &&
+                (usuario.search("@")==-1) && 
+                (dominio.search("@")==-1) &&
+                (usuario.search(" ")==-1) &&
+                (dominio.search(" ")==-1) &&
+                (dominio.search(".")!=-1) &&
+                (dominio.indexOf(".")>=-1) &&
+                (dominio.lastIndexOf(".") < dominio.length -1)) {
+            document.getElementById("msgemail").innerHTML="Email válido";
+            alert("Email válido");
+            }
+            else{
+                document.getElementById("msgemail").innerHTML= <font color='red' > Email inválido</font>;
+                alert("Email inválido");
+            }
+
+                
+        }
+    </script>
+    
+</body>
+</html>
